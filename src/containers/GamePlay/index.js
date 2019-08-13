@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-import { level_config } from '../../Utils'
+import { level_config } from '../../constants/index'
 import { Chrome } from 'react-feather'
 import Board from '../../components/Board';
 import { changeDifficultyRequest, initBoardRequest, toggleFlagSwitchRequest, gameOverStateRequest, clearGameRequest, levelSelectionRequest } from '../../reducers/GameSelectionReducer/action';

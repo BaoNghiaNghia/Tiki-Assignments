@@ -20,7 +20,7 @@ import {
     INIT_BOARD_DONE,
     INIT_BOARD_REQUEST
 } from './constants'
-import { level_config } from '../../Utils';
+import { level_config } from '../../constants/index'
 
 const initialState = {
     gameover: false,
