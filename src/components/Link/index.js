@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './index.css'
 
 class LinkComponent extends React.Component {
   hanldeClick = () => {
@@ -15,7 +16,7 @@ class LinkComponent extends React.Component {
   render () {
     const { to, children, className } = this.props
     return (
-        <Link className={className} onClick={this.hanldeClick} to={to}>{children}</Link>
+        <Link className="text-link" onClick={this.hanldeClick} to={to}>{children}</Link>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Link from '../../components/Link'
 import './index.css'
-import Button from '../../components/Button';
+import { Button } from '../../components/Button';
 
 class WelcomeScreen extends PureComponent {
     constructor(props) {
@@ -13,8 +13,8 @@ class WelcomeScreen extends PureComponent {
             <div className="mode-container">
                 <div className="mode-center">
                     <div className="mine-sweeper">Minesweeper</div>
-                    
-                    <Link to='/game-mode' className='start-icon'>
+
+                    <Link to='/game-mode'>
                         <Button label="Start game"></Button>
                     </Link>
                 </div>

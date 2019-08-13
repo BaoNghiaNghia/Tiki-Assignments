@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 
-const Button = ({
+export const Button = ({
   label, onClick, icon
 }) => {
   return(
@@ -11,6 +11,13 @@ const Button = ({
   );
 }
 
-export default Button
-
+export const ButtonOutline = ({
+  label, onClick, icon
+}) => {
+  return(
+    <button className='button button--swipe' onClick={onClick}>
+      <span className='button__text'>{label}</span>
+    </button>
+  );
+}
 

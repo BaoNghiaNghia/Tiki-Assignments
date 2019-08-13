@@ -1,5 +1,5 @@
 
-$btn-width: 10em !default;
+$btn-width: 30em !default;
 $btn-height: 3em !default;
 $btn-full: $btn-height + $btn-width !default;
 $btn-half: $btn-full/2 !default;
@@ -20,13 +20,11 @@ $dark-overlay: rgba(0,0,0,0.44);
   max-width: $btn-width;
   border-radius: 50px;
   padding: 1em 2em;
-  margin: 2em;
-  border: 0;
-  font-family: 'Raleway', sans-serif;
+  margin: 2em 0;
+  border: 1px;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
-  
   
   @include size(100%, $btn-height);
   
@@ -35,63 +33,18 @@ $dark-overlay: rgba(0,0,0,0.44);
     position: relative;
     display: block;
     transition: transform 1s;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline:0;
   }
 }
-
 
 .button--blue {
   color: #fff;
   background-image: $blue-gradient;
 }
-
-.button--diagonal {
-  
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $dark-overlay;
-    transform: translateX(100%);
-    box-sizing: content-box; 
-    transition: 0.7s ease-in-out;
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
-  }
-  
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    border: 1px solid transparent;
-    background-color: $dark-overlay;
-    transform: translateX(-100%);
-    transition: 0.7s ease-in-out;
-    //clip-path: polygon(0 0, 100% 101%, 0 101%);
-    clip-path: polygon(0 100%, 0 0, 100% 100%);
-  }
-
-  &:hover {
-    .button__text {
-      transform: scale(1.09);
-    }
-    
-    &:before,
-    &:after {
-      transform: translateX(0);
-    }
-  }
-}
-
 
 .button--swipe {
     

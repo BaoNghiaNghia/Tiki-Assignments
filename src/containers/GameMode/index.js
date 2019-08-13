@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import Link from '../../components/Link'
 import './index.css'
+import { Button, ButtonOutline }  from '../../components/Button';
 
 class GameMode extends PureComponent {
     constructor(props) {
@@ -11,20 +12,20 @@ class GameMode extends PureComponent {
         return (
             <div className="mode-container">
                 <div className="mode-center">
-                    <div className="mode-title">Minesweeper</div>
+                    <div className="mode-title">Select Mode</div>
                     <div>
-                        <Link to='/game-play' className='back-icon'>
-                            <span>Beginner</span>
+                        <Link to='/game-play'>
+                            <Button label="Beginner"></Button>
                         </Link>
                     </div>
                     <div>
-                        <Link to='/game-play' className='back-icon'>
-                            <span>Advantaged</span>
+                        <Link to='/game-play'>
+                            <Button label="Advantaged"></Button>
                         </Link>
                     </div>
                     <div>
-                        <Link to='/' className='back-icon'>
-                            <span>Home</span>
+                        <Link to='/'>
+                            <ButtonOutline label="Home"></ButtonOutline>
                         </Link>
                     </div>
                 </div>
