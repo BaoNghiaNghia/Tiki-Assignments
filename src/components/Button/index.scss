@@ -1,0 +1,34 @@
+.design-button {
+  border-radius: 10px;
+  background-color: 'gray';
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    padding-right: 8px;
+    path {
+      fill: transparent
+    }
+  }
+
+  &:hover {
+    background-color: #976be2;
+  }
+  &:focus {
+    background-color: #5D3999;
+  }
+  .button-text {
+    color: black;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 400;
+    letter-spacing: 0.11px;
+    line-height: 17px;
+    text-align: left;
+  }
+}
+
+

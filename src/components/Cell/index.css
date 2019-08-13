@@ -1,0 +1,11 @@
+.cell {
+  background-color: lightgray;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background-color: skyblue;
+}
+  

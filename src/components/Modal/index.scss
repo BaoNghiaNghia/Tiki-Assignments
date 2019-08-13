@@ -1,0 +1,32 @@
+.modal-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  .modal-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .modal-header {
+      color: #000000;
+      font-family: Helvetica;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.58px;
+      opacity: 0.75;
+      text-align: left;
+    }
+  }
+  .modal-content-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+  
+  .modal-footer-container {
+    padding: 8px 0px;
+  }
+}
+
+
