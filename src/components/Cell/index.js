@@ -1,20 +1,24 @@
 import React, { PureComponent } from 'react'
 import { Flag, Chrome } from 'react-feather'
 import './index.css'
+import { colors } from '../../constants';
 
 const baseStyle = {
-  width: 32,
-  height: 32,
-  border: 'outset 4px white',
-  lineHeight: '32px',
+  width: 40,
+  height: 40,
+  border: 'solid 1px black',
+  margin: 1,
+  backgroundColor: colors.mainDark,
+  lineHeight: '40px',
   userSelect: 'none'
 }
 
 const openStyle = {
-  width: 38,
-  height: 38,
-  lineHeight: '38px',
-  border: 'solid 1px darkgray'
+  width: 40,
+  height: 40,
+  lineHeight: '40px',
+  border: 'solid 1px darkgray',
+  backgroundColor: colors.mainLight,
 }
 
 export default class Cell extends PureComponent {
@@ -45,15 +49,15 @@ export default class Cell extends PureComponent {
 
     let content = cell.flagged ? <Flag /> : ''
     let style = Object.assign({}, baseStyle, {
-      width: cellSize - 8,
-      height: cellSize - 8,
-      lineHeight: `${cellSize - 8}px`,
+      width: cellSize,
+      height: cellSize,
+      lineHeight: `${cellSize}px`,
     })
     if (cell.open) {
       style = Object.assign({}, style, openStyle, {
-        width: cellSize - 2,
-        height: cellSize - 2,
-        lineHeight: `${cellSize - 2}px`
+        width: cellSize,
+        height: cellSize,
+        lineHeight: `${cellSize}px`
       })
       if (cell.bomb) {
         content = <Chrome style={{ marginTop: -3 }} />
@@ -61,34 +65,7 @@ export default class Cell extends PureComponent {
       } else {
         if (cell.bombCount > 0) {
           content = cell.bombCount
-          switch (content) {
-            case 1:
-              style = Object.assign({}, style, { color: 'blue' })
-              break
-            case 2:
-              style = Object.assign({}, style, { color: 'green' })
-              break
-            case 3:
-              style = Object.assign({}, style, { color: 'red' })
-              break
-            case 4:
-              style = Object.assign({}, style, { color: 'navy' })
-              break
-            case 5:
-              style = Object.assign({}, style, { color: 'darkred' })
-              break
-            case 6:
-              style = Object.assign({}, style, { color: 'deepskyblue' })
-              break
-            case 7:
-              style = Object.assign({}, style, { color: 'navy' })
-              break
-            case 8:
-              style = Object.assign({}, style, { color: 'gray' })
-              break
-            default:
-              break
-          }
+          style = Object.assign({}, style, { color: 'white' })
         } else {
           content = ''
         }

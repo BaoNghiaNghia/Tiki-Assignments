@@ -1,34 +1,125 @@
-.design-button {
-  border-radius: 10px;
-  background-color: 'gray';
-  padding: 8px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
 
-  svg {
-    padding-right: 8px;
-    path {
-      fill: transparent
-    }
-  }
+$btn-width: 10em !default;
+$btn-height: 3em !default;
+$btn-full: $btn-height + $btn-width !default;
+$btn-half: $btn-full/2 !default;
+$blue-gradient:  linear-gradient(-135deg, #2D76D1 0%, #3994CE 52%, #2EA4A8 100%);
+$dark-overlay: rgba(0,0,0,0.44);
 
-  &:hover {
-    background-color: #976be2;
-  }
-  &:focus {
-    background-color: #5D3999;
-  }
-  .button-text {
-    color: black;
-    font-size: 14px;
-    font-family: Helvetica;
-    font-weight: 400;
-    letter-spacing: 0.11px;
-    line-height: 17px;
-    text-align: left;
+// Mixins
+
+@mixin size ($width, $height: $width) {
+	width: $width;
+	height: $height;
+}
+
+.button {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  max-width: $btn-width;
+  border-radius: 50px;
+  padding: 1em 2em;
+  margin: 2em;
+  border: 0;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  
+  
+  @include size(100%, $btn-height);
+  
+  &__text {
+    z-index: 2;
+    position: relative;
+    display: block;
+    transition: transform 1s;
   }
 }
 
 
+.button--blue {
+  color: #fff;
+  background-image: $blue-gradient;
+}
+
+.button--diagonal {
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $dark-overlay;
+    transform: translateX(100%);
+    box-sizing: content-box; 
+    transition: 0.7s ease-in-out;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    background-color: $dark-overlay;
+    transform: translateX(-100%);
+    transition: 0.7s ease-in-out;
+    //clip-path: polygon(0 0, 100% 101%, 0 101%);
+    clip-path: polygon(0 100%, 0 0, 100% 100%);
+  }
+
+  &:hover {
+    .button__text {
+      transform: scale(1.09);
+    }
+    
+    &:before,
+    &:after {
+      transform: translateX(0);
+    }
+  }
+}
+
+
+.button--swipe {
+    
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $dark-overlay;
+    box-sizing: border-box;
+    border-radius: 50px;
+    transform: translate(-100%, 0) rotate(10deg);
+    transform-origin: top left;
+    transition: .2s transform ease-out;
+    will-change: transform;
+    
+  }
+  &:hover {
+    .button__text {
+      transform: scale(1.09);
+    }
+    
+    &:before,
+    &:after {
+      transform: translate(0);
+    }
+  }
+}

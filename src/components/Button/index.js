@@ -2,16 +2,15 @@ import React from 'react'
 import './index.scss'
 
 const Button = ({
-  label, onClick, icon, classes
+  label, onClick, icon
 }) => {
-  return (
-      <button className='design-button' onClick={onClick}>
-        {icon}
-        <span className='button-text'>
-          {label}
-        </span>
-      </button>
-  )
+  return(
+    <button className='button button--blue button--swipe' onClick={onClick}>
+      <span className='button__text'>{label}</span>
+    </button>
+  );
 }
 
 export default Button
+
+

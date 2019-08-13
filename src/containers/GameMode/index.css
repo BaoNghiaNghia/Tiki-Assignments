@@ -1,0 +1,17 @@
+.mode-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-center {
+    border: solid 1px black;
+    padding: 10vh 20vh
+}
+
+.mode-title {
+    justify-content: 'center';
+    align-items: 'center'
+}
