@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 
 import { level_config } from '../../constants/index'
 import { Chrome } from 'react-feather'
+import Link from '../../components/Link'
 import Board from '../../components/Board';
 import { changeDifficultyRequest, initBoardRequest, toggleFlagSwitchRequest, gameOverStateRequest, clearGameRequest, levelSelectionRequest } from '../../reducers/GameSelectionReducer/action';
 import './index.css'
+import { Button, ButtonOutline } from '../../components/Button';
 
 class GamePlay extends PureComponent {
     constructor(props) {
@@ -237,12 +239,14 @@ class GamePlay extends PureComponent {
         }
         
         return (
-            <div id="game" style={{ width: boardWidthPx }}>
-                <h1>Minesweeper</h1>
-                <div id="menu">
-                    <button onClick={this.handleResetGame} id="restart">
-                        Restart
-                    </button>
+            <div className="game-container" style={{ width: boardWidthPx }}>
+                <div className="header-container">
+
+                    <Button label="New game" onClick={this.handleResetGame}></Button>
+                    
+                    <Link to='/'>
+                      <ButtonOutline label="Home"></ButtonOutline>
+                    </Link>
 
                     <select value={difficulty} onChange={(e) => this.changeDifficulty(e)} style={{ marginRight: 5 }}>
                         <option value={'beginner'} key={'beginner'}>Beginner</option>
@@ -251,6 +255,8 @@ class GamePlay extends PureComponent {
                     <span><Chrome size={16} style={{ marginBottom: -2, marginLeft: 15}} /> {bomb}</span>
                     {status}
                 </div>
+
+                
                 <Board
                     board={board}
                     cellSize={cellSize}

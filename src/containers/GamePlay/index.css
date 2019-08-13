@@ -1,12 +1,6 @@
-#game {
-    margin: 0 auto;
-    width: 320px;
-  }
-#menu {
-  clear: both;
-  height: 33px;
-  line-height: 33px;
-  margin-bottom: 10px;
+.game-container {
+  margin: 0 auto;
+  width: 320px;
 }
 #restart {
   float: right;
@@ -34,3 +28,9 @@
   color: green;
 }
   
+.header-container {
+  border: 1px solid black;
+  border-radius: 7px;
+  margin: 20px auto;
+  padding: 10px 20px;
+}

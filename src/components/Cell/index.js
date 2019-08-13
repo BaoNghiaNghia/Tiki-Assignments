@@ -21,6 +21,11 @@ const openStyle = {
   backgroundColor: colors.mainLight,
 }
 
+const flag = {
+  color: '#fff',
+  marginTop: 7
+}
+
 export default class Cell extends PureComponent {
   constructor(props) {
     super(props)
@@ -47,21 +52,26 @@ export default class Cell extends PureComponent {
   render() {
     const { cell, cellSize } = this.props;
 
-    let content = cell.flagged ? <Flag /> : ''
+    let content = cell.flagged ? <Flag style={flag} /> : ''
+
     let style = Object.assign({}, baseStyle, {
       width: cellSize,
       height: cellSize,
       lineHeight: `${cellSize}px`,
     })
+
     if (cell.open) {
+      
       style = Object.assign({}, style, openStyle, {
         width: cellSize,
         height: cellSize,
         lineHeight: `${cellSize}px`
       })
+
       if (cell.bomb) {
         content = <Chrome style={{ marginTop: -3 }} />
         style = Object.assign({}, style, { backgroundColor: 'red' })
+
       } else {
         if (cell.bombCount > 0) {
           content = cell.bombCount
@@ -69,6 +79,7 @@ export default class Cell extends PureComponent {
         } else {
           content = ''
         }
+
       }
     }
     return (

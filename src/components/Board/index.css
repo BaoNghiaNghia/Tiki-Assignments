@@ -1,5 +1,6 @@
 .board {
     display: flex;
-    width: 288px;
-  }
+    justify-content: center;
+    align-items: center
+}
   
