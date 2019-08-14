@@ -13,21 +13,15 @@ class GameMode extends PureComponent {
             <div className="mode-container">
                 <div className="mode-center">
                     <div className="mode-title">Select Game Mode</div>
-                    <div>
-                        <Link to='/game-play'>
+                        <Link to='/game-play?mode=beginner'>
                             <Button label="Beginner"></Button>
                         </Link>
-                    </div>
-                    <div>
-                        <Link to='/game-play'>
+                        <Link to='/game-play?mode=advantaged'>
                             <Button label="Advantaged"></Button>
                         </Link>
-                    </div>
-                    <div>
                         <Link to='/'>
                             <ButtonOutline label="Home"></ButtonOutline>
                         </Link>
-                    </div>
                 </div>
             </div>
         )

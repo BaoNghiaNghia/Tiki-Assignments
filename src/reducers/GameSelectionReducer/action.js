@@ -6,9 +6,6 @@ import {
     TOGGLE_FLAG_SWITCH_REQUEST,
     TOGGLE_FLAG_SWITCH_DONE,
 
-    CHANGE_DIFFICULTY_REQUEST,
-    CHANGE_DIFFICULTY_DONE,
-
     GAME_OVER_STATE_REQUEST,
     GAME_OVER_STATE_DONE,
     
@@ -44,16 +41,6 @@ export const toggleFlagSwitchDone = (data) => ({
     payload: data
 })
 
-export const changeDifficultyRequest = (data) => ({
-    type: CHANGE_DIFFICULTY_REQUEST,
-    payload: data
-})
-
-export const changeDifficultyDone = (data) => ({
-    type: CHANGE_DIFFICULTY_DONE,
-    payload: data
-})
-
 export const gameOverStateRequest = () => ({
     type: GAME_OVER_STATE_REQUEST
 })
@@ -70,8 +57,9 @@ export const clearGameDone = () => ({
     type: CLEAR_GAME_DONE
 })
 
-export const initBoardRequest = () => ({
-    type: INIT_BOARD_REQUEST
+export const initBoardRequest = (data) => ({
+    type: INIT_BOARD_REQUEST,
+    payload: data
 })
 
 export const initBoardDone = () => ({

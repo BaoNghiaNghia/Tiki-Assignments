@@ -2,7 +2,7 @@ import React from 'react'
 import './index.scss'
 
 export const Button = ({
-  label, onClick, icon
+  label, onClick, icon, className
 }) => {
   return(
     <button className='button button--blue button--swipe' onClick={onClick}>
@@ -12,7 +12,7 @@ export const Button = ({
 }
 
 export const ButtonOutline = ({
-  label, onClick, icon
+  label, onClick, icon, className
 }) => {
   return(
     <button className='button button--swipe' onClick={onClick}>

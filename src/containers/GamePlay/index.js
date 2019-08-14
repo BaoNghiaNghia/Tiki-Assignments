@@ -5,7 +5,10 @@ import { level_config } from '../../constants/index'
 import { Chrome } from 'react-feather'
 import Link from '../../components/Link'
 import Board from '../../components/Board';
-import { changeDifficultyRequest, initBoardRequest, toggleFlagSwitchRequest, gameOverStateRequest, clearGameRequest, levelSelectionRequest } from '../../reducers/GameSelectionReducer/action';
+import {
+  changeDifficultyRequest, toggleFlagSwitchRequest, gameOverStateRequest, clearGameRequest, levelSelectionRequest,
+  initBoardRequest
+} from '../../reducers/GameSelectionReducer/action';
 import './index.css'
 import { Button, ButtonOutline } from '../../components/Button';
 
@@ -21,25 +24,29 @@ class GamePlay extends PureComponent {
         }
     }
 
-    async componentWillMount() {
-      const { size, mines } = this.state;
+    componentWillMount() {
+      
+      // Init game mode from search params
+      const urlParams = new URLSearchParams(location.search);
+      const gameMode = urlParams.get('mode');
+      this.props.initReq(gameMode);
+
+      // Init counter
       this.interval = [];
 
-      await this.props.fetchLevelSelection({
-        size,
-        mines
+      this.props.fetchLevelSelection({
+        size: level_config[gameMode].boardHeight,
+        mines: level_config[gameMode].bombNum
       })
     }
 
     componentWillReceiveProps(nextProps){
       const { bombPlaces, difficulty } = nextProps
-      
+
       if(bombPlaces) {
-        
         const board = this.initBoard(difficulty, bombPlaces)
         this.setState({ board })
       }
-
     }
 
     setInterval = (fn, t) => {
@@ -77,7 +84,7 @@ class GamePlay extends PureComponent {
     
     handleClickCell = (x, y) => {
         const { gameover, clear } = this.props
-        console.log('gameover nè', gameover)
+
         if (gameover || clear) {
           return
         }
@@ -114,31 +121,6 @@ class GamePlay extends PureComponent {
           this.open(i, j)
         }
       }
-    }
-    
-    changeDifficulty = (e) => {
-        const { value } = e.target
-        const { bombPlaces } = this.props
-
-        this.props.changeDifficultyReq(value)
-
-        let newSize = level_config[value].boardHeight
-        let newMines = level_config[value].bombNum
-
-        this.setState({
-          size: newSize,
-          mines: newMines
-        }, () => {
-          this.props.fetchLevelSelection({
-            size: newSize,
-            mines: newMines
-          })
-        })
-
-
-        this.setState({ 
-          board: this.initBoard(value, bombPlaces) 
-        })
     }
     
     open = (x, y) => {
@@ -226,8 +208,8 @@ class GamePlay extends PureComponent {
 
     render() {
         const { board } = this.state;
-        const { difficulty, gameover, clear, bomb } = this.props
-        const { boardWidth, cellSize } = level_config[difficulty]
+        const { difficulty, gameover, clear, bomb } = this.props;
+        const { boardWidth, cellSize } = difficulty ? level_config[difficulty] : level_config['beginner']
         const boardWidthPx = boardWidth * cellSize
 
         let status = <span className="status"></span>
@@ -240,22 +222,17 @@ class GamePlay extends PureComponent {
         
         return (
             <div className="game-container" style={{ width: boardWidthPx }}>
+                <div className="button-container">
+                  <Button label="New game" onClick={this.handleResetGame}></Button>
+                  
+                  <Link to='/'>
+                    <ButtonOutline label="Home" onClick={this.handleResetGame}></ButtonOutline>
+                  </Link>
+                </div>
                 <div className="header-container">
-
-                    <Button label="New game" onClick={this.handleResetGame}></Button>
-                    
-                    <Link to='/'>
-                      <ButtonOutline label="Home"></ButtonOutline>
-                    </Link>
-
-                    <select value={difficulty} onChange={(e) => this.changeDifficulty(e)} style={{ marginRight: 5 }}>
-                        <option value={'beginner'} key={'beginner'}>Beginner</option>
-                        <option value={'advantaged'} key={'advantaged'}>Advantaged</option>
-                    </select>
-                    <span><Chrome size={16} style={{ marginBottom: -2, marginLeft: 15}} /> {bomb}</span>
+                    <span><Chrome size={25} style={{ marginBottom: -6}} /> {bomb}</span>
                     {status}
                 </div>
-
                 
                 <Board
                     board={board}
@@ -278,10 +255,10 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
     fetchLevelSelection: (data) => dispatch(levelSelectionRequest(data)),
-    changeDifficultyReq: (data) => dispatch(changeDifficultyRequest(data)),
     toggle: (data) => dispatch(toggleFlagSwitchRequest(data)),
     gameoverReq: (data) => dispatch(gameOverStateRequest(data)),
-    clearReq: (data) => dispatch(clearGameRequest(data))
+    clearReq: (data) => dispatch(clearGameRequest(data)),
+    initReq: (data) => dispatch(initBoardRequest(data)),
 })
 
 export default connect(

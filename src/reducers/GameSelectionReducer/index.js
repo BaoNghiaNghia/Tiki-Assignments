@@ -8,9 +8,6 @@ import {
     TOGGLE_FLAG_SWITCH_REQUEST,
     TOGGLE_FLAG_SWITCH_DONE,
 
-    CHANGE_DIFFICULTY_REQUEST,
-    CHANGE_DIFFICULTY_DONE,
-
     GAME_OVER_STATE_REQUEST,
     GAME_OVER_STATE_DONE,
     
@@ -25,10 +22,12 @@ import { level_config } from '../../constants/index'
 const initialState = {
     gameover: false,
     clear: false,
-    bomb: level_config['beginner'].bombNum,
-    difficulty: 'beginner',
+    bomb: '',
+    difficulty: '',
     data: [],
     isLoading: false,
+    size: 0,
+    mines: 0,
     error: undefined
 }
 
@@ -92,24 +91,6 @@ export default (state = initialState, action) => {
         })
       }
 
-      case CHANGE_DIFFICULTY_REQUEST: {
-        data = action.payload
-        return {
-            gameover: false,
-            clear: false,
-            bomb: level_config[data].bombNum,
-            difficulty: data
-        }
-      }
-
-      case CHANGE_DIFFICULTY_DONE: {
-        return {
-          ...state,
-          isLoading: true,
-          error: undefined
-        }
-      }
-
       case GAME_OVER_STATE_REQUEST: {
         return {
           ...state,
@@ -145,21 +126,20 @@ export default (state = initialState, action) => {
       }
 
       case INIT_BOARD_REQUEST: {
+        data = action.payload;
+        
         return {
           ...state,
-          isLoading: true,
-          error: undefined
+          difficulty: data,
+          bomb: level_config[data].bombNum,
         }
       }
 
       case INIT_BOARD_DONE: {
         return {
           ...state,
-          gameover: false,
-          clear: false,
-          bomb: level_config[state.difficulty].bombNum,
-          difficulty: state.difficulty,
           isLoading: false,
+          error: undefined
         }
       }
       

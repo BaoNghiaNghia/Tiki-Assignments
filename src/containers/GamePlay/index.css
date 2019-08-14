@@ -31,6 +31,16 @@
 .header-container {
   border: 1px solid black;
   border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 20px auto;
   padding: 10px 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch
 }
